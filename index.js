@@ -10,9 +10,21 @@ const port = 3000
 const path = require('path')
 const basePath= path.join(__dirname, 'templates')
 
+// Ler o body
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+)
+
+app.use(express.json())
+
 app.get('/users/add',(req,res) => {
     res.sendFile(`${basePath}/form.html`)
 })
+
+// Arquivos estáticos
+app.use(express.static('public'))
 
 app.post('/users/save', (req,res) => {
     console.log(req.body)
