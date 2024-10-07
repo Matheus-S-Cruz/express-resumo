@@ -5,10 +5,22 @@
 
 const express = require('express')
 const nodemon = require('nodemon')
+const exphbs = require('express-handlebars')
+
 const app = express()
 const port = 3000
 const path = require('path')
 const basePath= path.join(__dirname, 'templates')
+
+app.engine('handlebars', exphbs.engine())
+
+app.set('view engine', 'handlebars')
+
+app.get('/', function (req,res) {    
+    res.render('home', { layout:false })
+})
+
+app.listen(port)
 
 // Ler o body
 app.use(
@@ -45,9 +57,6 @@ app.get('/',(req,res) => {
     res.sendFile(`${basePath}/index.html`)
 }) //faz uma requisição e espera uma resposta dela
 
-app.listen(port, () => {
-    console.log(`App rodando na porta: ${port}`)
-})
 
 // var checkAuth = function(req,res,next){
 //     req.authStatus = true
