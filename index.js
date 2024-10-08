@@ -9,17 +9,31 @@ const nodemon = require('nodemon')
 const exphbs = require('express-handlebars')
 
 const app = express()
-const port = 3000
+const port = 5000
 const path = require('path')
 const basePath= path.join(__dirname, 'templates')
 
 app.engine('handlebars', exphbs.engine())
-
 app.set('view engine', 'handlebars')
 
-app.get('/', function (req,res) {    
-    res.render('home', { layout:false })
+app.get('/peixe', (req,res) => {
+    res.render('peixe')
 })
+
+app.get('/', function (req,res) { //valor associa a uma função
+    const user = {
+        name: 'Matheus',
+        age: '17',
+        email: 'matheus_silva-cruz@estudante.sesisenai.org.br'
+    }
+    const auth = false
+    const approved = true
+    res.render('acai', { user: user, auth, approved }) //enviar dados do view para a requisição
+})
+
+// app.get('/', function (req,res) {    
+//     res.render('home', { layout:false })
+// })
 
 app.listen(port)
 
