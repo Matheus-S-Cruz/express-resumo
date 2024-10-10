@@ -36,7 +36,7 @@ app.get('/users/add',(req,res) => {
     res.sendFile(`${basePath}/form.html`)
 })
 
-// Arquivos estáticos
+// Arquivos estáticos, por exemplo pra puxar css
 app.use(express.static('public'))
 
 app.post('/users/save', (req,res) => {
