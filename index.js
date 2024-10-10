@@ -3,6 +3,7 @@
 //npm install nodemon
 //npm install --save-dev nodemon
 //npm install express-handlebars
+// npm start
 
 const express = require('express')
 const nodemon = require('nodemon')
